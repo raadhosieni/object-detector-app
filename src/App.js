@@ -9,14 +9,18 @@ const dimensions = {
 
 const App = () => {
   const webcamRef = useRef();
+  const canvasRef = useRef();
 
   useEffect(() => {
     let detectionInterval;
+    const ctx = canvasRef.current.getContext("2d");
     const modelLoaded = () => {
       const { width, height } = dimensions;
 
       webcamRef.current.video.width = width;
       webcamRef.current.video.height = height;
+      canvasRef.current.width = width;
+      canvasRef.current.height = height;
 
       detectionInterval = setInterval(() => {
         detect();
@@ -33,7 +37,19 @@ const App = () => {
           console.err(err);
         }
 
-        console.log(results);
+        if (results && results.length) {
+          results.forEach((detection) => {
+            ctx.clearRect(0, 0, dimensions.width, dimensions.height);
+
+            //draw rectangle on canvas with same position
+            ctx.beginPath();
+            ctx.fillStyle = "FF0000";
+            const { label, x, y, width, height } = detection;
+            ctx.fillText(label, x, y - 5);
+            ctx.rect(x, y, width, height);
+            ctx.stroke();
+          });
+        }
       });
     };
 
@@ -49,6 +65,7 @@ const App = () => {
   return (
     <div className="app">
       <Webcam ref={webcamRef} />
+      <canvas ref={canvasRef} className="floating" />
     </div>
   );
 };
