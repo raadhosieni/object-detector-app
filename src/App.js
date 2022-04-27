@@ -19,12 +19,12 @@ const App = () => {
 
       // webcamRef.current.video.width = width;
       // webcamRef.current.video.height = height;
-      canvasRef.current.width = width;
-      canvasRef.current.height = height;
+      canvasRef.current.width = webcamRef.current.video.width;
+      canvasRef.current.height = webcamRef.current.video.height;
 
       detectionInterval = setInterval(() => {
         detect();
-      }, 200);
+      }, 50);
     };
 
     const detect = () => {
