@@ -65,11 +65,7 @@ const App = () => {
 
   return (
     <div className="app">
-      <Webcam
-        ref={webcamRef}
-        width={dimensions.width}
-        height={dimensions.height}
-      />
+      <Webcam ref={webcamRef} />
       <canvas ref={canvasRef} className="floating" />
     </div>
   );
