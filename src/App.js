@@ -17,8 +17,8 @@ const App = () => {
     const modelLoaded = () => {
       const { width, height } = dimensions;
 
-      webcamRef.current.video.width = width;
-      webcamRef.current.video.height = height;
+      // webcamRef.current.video.width = width;
+      // webcamRef.current.video.height = height;
       canvasRef.current.width = width;
       canvasRef.current.height = height;
 
@@ -45,7 +45,7 @@ const App = () => {
             ctx.beginPath();
             ctx.fillStyle = "#FF0000";
             const { label, x, y, width, height } = detection;
-            ctx.fillText(label, x, y - 5);
+            ctx.fillText(label, x, y + 10);
             ctx.rect(x, y, width, height);
             ctx.strokeStyle = "#00ff00";
             ctx.stroke();
@@ -65,7 +65,11 @@ const App = () => {
 
   return (
     <div className="app">
-      <Webcam ref={webcamRef} />
+      <Webcam
+        ref={webcamRef}
+        width={dimensions.width}
+        height={dimensions.height}
+      />
       <canvas ref={canvasRef} className="floating" />
     </div>
   );
