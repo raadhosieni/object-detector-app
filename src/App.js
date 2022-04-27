@@ -43,7 +43,7 @@ const App = () => {
 
             //draw rectangle on canvas with same position
             ctx.beginPath();
-            ctx.fillStyle = "FF0000";
+            ctx.fillStyle = "#FF0000";
             const { label, x, y, width, height } = detection;
             ctx.fillText(label, x, y - 5);
             ctx.rect(x, y, width, height);
