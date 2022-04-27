@@ -47,6 +47,7 @@ const App = () => {
             const { label, x, y, width, height } = detection;
             ctx.fillText(label, x, y - 5);
             ctx.rect(x, y, width, height);
+            ctx.strokeStyle = "#00ff00";
             ctx.stroke();
           });
         }
