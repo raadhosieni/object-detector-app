@@ -15,8 +15,6 @@ const App = () => {
     let detectionInterval;
     const ctx = canvasRef.current.getContext("2d");
     const modelLoaded = () => {
-      const { width, height } = dimensions;
-
       // webcamRef.current.video.width = width;
       // webcamRef.current.video.height = height;
       canvasRef.current.width = webcamRef.current.video.width;
